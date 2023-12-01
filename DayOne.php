@@ -18,14 +18,10 @@ $digits = [
 ];
 
 foreach ($puzzleArray as $puzzlePiece) {
-    preg_match_all('#\d|(?=(one|two|three|four|five|six|seven|eight|nine))#', $puzzlePiece, $matches);
+    preg_match_all('#(?=(\d|one|two|three|four|five|six|seven|eight|nine))#', $puzzlePiece, $matches);
 
-    for ($i = 0; $i < count($matches[0]); $i++) {
-        $matches[0][$i] = !empty($matches[0][$i]) ? $matches[0][$i] : $matches[1][$i];
-    }
-
-    $firstNumber = $matches[0][0];
-    $lastNumber = end($matches[0]);
+    $firstNumber = $matches[1][0];
+    $lastNumber = end($matches[1]);
 
     if (!is_numeric($firstNumber)) {
         $firstNumber = $digits[$firstNumber];
@@ -36,7 +32,7 @@ foreach ($puzzleArray as $puzzlePiece) {
     }
 
     $number = $firstNumber . $lastNumber;
-    $result += $number;
+    $result += (int) $number;
 }
 
 var_dump('finalResult : ' . $result);
