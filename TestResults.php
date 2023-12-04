@@ -6,6 +6,7 @@ function testResults($testsArray): void
 
         var_dump($name . ' : ' .
             ($test['expectedResult'] === $result ? 'OK, ' : 'KO, ')
+            . 'expected ' . $test['expectedResult'] . ', '
             . 'result ' . $result
         );
     }
